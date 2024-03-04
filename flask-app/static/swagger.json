@@ -1,0 +1,95 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Full Stack API",
+        "description": "A sample API that demonstrates how to use Flask-SwaggerUI.",
+        "version": "1.0"
+    },
+    "paths": {
+        "/get/users": {
+            "get": {
+                "summary": "Returns a simple users list.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "First Name": {
+                                    "type": "string"
+                                },
+                                "Last Name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/post/users": {
+            "post": {
+                "summary": "Takes input for a user details.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User details",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "First Name": {
+                                    "type": "string"
+                                },
+                                "Last Name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "First Name": {
+                                    "type": "string"
+                                },
+                                "Last Name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
