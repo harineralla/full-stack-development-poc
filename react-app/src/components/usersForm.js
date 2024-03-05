@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Input } from 'antd';
+import axios from "axios";
 import '../App.css';
+
+export const LOCAL_HOST = 'http://127.0.0.1:5000'
 
 function UserForm() {
     const onFinish = (values) => {
-        console.log('Received values:', values);
+        // debugger
+        axios.post('http://127.0.0.1:5000/users', {
+            "First Name": values["firstName"],
+            "Last Name": values["lastName"],
+            "email": values["email"],
+            "password": values["password"]
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log("Error posting user details", error)
+        })
     };
 
     return (

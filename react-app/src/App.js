@@ -7,7 +7,7 @@ import UserForm from './components/usersForm';
 function App() {
   return (
     <div className="App">
-      {/* <Time /> */}
+      <Time />
       <UserForm />
     </div>
   );

@@ -12,12 +12,7 @@ function Time() {
 
     return (
         <div className="App">
-            <header className="App-header">
-
-                ... no changes in this part ...
-
-                <p>The current time is {currentTime}.</p>
-            </header>
+            <p>The current time is {currentTime}.</p>
         </div>
     );
 }
