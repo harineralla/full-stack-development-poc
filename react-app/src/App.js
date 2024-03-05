@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+// import 'antd/dist/antd.css';
 import Time from './components/time';
+import UserForm from './components/usersForm';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          <Time />
-      </header>
+      {/* <Time /> */}
+      <UserForm />
     </div>
   );
 }
