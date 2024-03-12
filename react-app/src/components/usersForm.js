@@ -11,8 +11,8 @@ function UserForm() {
         axios.post('http://127.0.0.1:5000/users', {
             "First Name": values["firstName"],
             "Last Name": values["lastName"],
-            "email": values["email"],
-            "password": values["password"]
+            "Email": values["email"],
+            "Password": values["password"]
         }, {
             headers: {
                 'Content-Type': 'application/json'
