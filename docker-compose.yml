@@ -9,6 +9,8 @@ services:
       - "5000:5000"
     depends_on:
       - mongodb
+    # networks:
+    #   - my-network
 
   mongodb:
     image: mongo:latest
@@ -17,6 +19,8 @@ services:
     environment:
       - MONGO_INITDB_DATABASE=fullstack
       - MONGO_HOST=mongodb
+    # networks:
+    #   - my-network
 
   react-app:
     build:
@@ -26,7 +30,10 @@ services:
       - "80:80"
     depends_on:
       - flask-app
+    # networks:
+    #   - my-network
 
-networks:
-  default:
-    driver: bridge
+# networks:
+#     my-network:
+#   default:
+#     driver: bridge

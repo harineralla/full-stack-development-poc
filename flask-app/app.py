@@ -21,8 +21,7 @@ def connect_to_mongodb():
 
 
 client = connect_to_mongodb()
-db = client['fullstack'] if 'fullstack' in client.list_database_names() else None
-
+db = client['fullstack']
 
 CORS(app)
 
@@ -55,57 +54,52 @@ def get_current_time():
 
 class UserAnalysis(Resource):
     def get(self):
-        if db is not None:
-            try:
-                
-                users_data = list(db['users'].find())
-                json_data = []
-                for doc in users_data:
-                    fn = doc["First Name"]
-                    ln = doc["Last Name"]
-                    email = doc["Email"]
-                    password = doc["Password"]
-                    json_data.append({
-                        "First Name": fn,
-                        "Last Name": ln,
-                        "Email": email,
-                        "Password": password
-                    })
-                # breakpoint()
-                return {"total number of users": len(users_data), "users": json_data}, 200
-            except Exception as e:
-                # breakpoint()
-                # print("hitting here")
-                return {"error": str(e)}, 500
-        else:
-            return {"error": "MongoDB is not initialized."}, 500
-
-    def post(self):
-        if db is not None:
-            try:
-                request_data = request.json
-                first_name = request_data.get("First Name")
-                last_name = request_data.get("Last Name")
-                email = request_data.get("Email")
-                password = request_data.get("Password")
-
-                db['users'].insert_one({
-                    "First Name": first_name,
-                    "Last Name": last_name,
+        # if db is not None:
+        try:
+            users_data = list(db['users'].find())
+            json_data = []
+            for doc in users_data:
+                fn = doc["First Name"]
+                ln = doc["Last Name"]
+                email = doc["Email"]
+                password = doc["Password"]
+                json_data.append({
+                    "First Name": fn,
+                    "Last Name": ln,
                     "Email": email,
                     "Password": password
                 })
+            return {"total number of users": len(users_data), "users": json_data}, 200
+        except Exception as e:
+            return {"error": str(e)}, 500
 
-                return {
-                    'status': 'Successfully stored the data in MongoDB!',
-                    'firstName': first_name,
-                    'lastName': last_name,
-                    'email': email,
-                    'password': password}, 200
-            except Exception as e:
-                return {"error": str(e)}, 500
-        else:
-            return {"error": "MongoDB is not initialized."}, 500
+    def post(self):
+        # client = connect_to_mongodb()
+        # db = client['fullstack']
+        try:
+            request_data = request.json
+            first_name = request_data.get("First Name")
+            last_name = request_data.get("Last Name")
+            email = request_data.get("Email")
+            password = request_data.get("Password")
+
+            db['users'].insert_one({
+                "First Name": first_name,
+                "Last Name": last_name,
+                "Email": email,
+                "Password": password
+            })
+
+            return {
+                'status': 'Successfully stored the data in MongoDB!',
+                'firstName': first_name,
+                'lastName': last_name,
+                'email': email,
+                'password': password}, 200
+        except Exception as e:
+            return {"error": str(e)}, 500
+        # else:
+        #     return {"error": "MongoDB is not initialized."}, 500
 
 
 api.add_resource(UserAnalysis, '/users')
